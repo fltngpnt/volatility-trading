@@ -503,7 +503,7 @@ class VolatilityEstimator(object):
         
         return fig, plt
 
-    def histogram(self, window=90, bins=100, normed=True):
+    def histogram(self, window=90, bins=100, density=True):
         """
         
         Parameters
@@ -526,9 +526,9 @@ class VolatilityEstimator(object):
 
         fig = plt.figure(figsize=(8, 6))
         
-        n, bins, patches = plt.hist(estimator, bins, normed=normed, facecolor='blue', alpha=0.25)
+        n, bins, patches = plt.hist(estimator, bins, density=true, facecolor='blue', alpha=0.25)
         
-        if normed:
+        if true:
             y = norm.pdf(bins, mean, std)
             plt.plot(bins, y, 'g--', linewidth=1)
 
@@ -704,14 +704,14 @@ class VolatilityEstimator(object):
             windows=[30, 60, 90, 120],
             quantiles=[0.25, 0.75],
             bins=100,
-            normed=True,
+            density=True,
             open=False):
         
         cones_fig, cones_plt = self.cones(windows=windows, quantiles=quantiles)
         rolling_quantiles_fig, rolling_quantiles_plt = self.rolling_quantiles(window=window, quantiles=quantiles)
         rolling_extremes_fig, rolling_extremes_plt = self.rolling_extremes(window=window)
         rolling_descriptives_fig, rolling_descriptives_plt = self.rolling_descriptives(window=window)
-        histogram_fig, histogram_plt = self.histogram(window=window, bins=bins, normed=normed)
+        histogram_fig, histogram_plt = self.histogram(window=window, bins=bins, density=true)
         benchmark_compare_fig, benchmark_compare_plt = self.benchmark_compare(window=window)
         benchmark_corr_fig, benchmark_corr_plt = self.benchmark_correlation(window=window)
         benchmark_regression = self.benchmark_regression(window=window)
